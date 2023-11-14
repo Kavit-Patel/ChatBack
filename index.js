@@ -10,12 +10,12 @@ import { Server } from "socket.io";
 let chat = [];
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: process.env.ORIGIN }));
 app.use(cookieParser());
 app.use(express.json());
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  cors: { origin: ["http://localhost:5173"] },
+  cors: { origin: [process.env.ORIGIN] },
 });
 
 mongoose
@@ -59,12 +59,12 @@ io.on("connection", (socket) => {
       chat.push({ name: data.sender, id: socket.id });
     }
 
-    console.log("data", data);
+    // console.log("data", data);
     if (data?.senderText.length > 0) {
       chat.map((elem) => {
         if (elem.name == data.receiver) {
-          console.log("receive triggered on server side");
-          console.log("elemid", elem.id, "value", data.value);
+          // console.log("receive triggered on server side");
+          // console.log("elemid", elem.id, "value", data.value);
           socket.broadcast.to(elem.id).emit("receive", data);
         }
       });
