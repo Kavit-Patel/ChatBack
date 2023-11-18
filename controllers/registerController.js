@@ -66,6 +66,8 @@ export const loginController = async (req, res) => {
       .cookie("chat_basic_cookie", token, {
         sameSite: "none",
         secure: "false",
+        // httpOnly: true,
+        maxAge: 9000000000,
       })
       .json({ user: checkUser, members: membs })
       .status(200);
