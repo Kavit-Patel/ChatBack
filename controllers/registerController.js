@@ -67,7 +67,7 @@ export const loginController = async (req, res) => {
         sameSite: "none",
         secure: "true",
         // httpOnly: true,
-        maxAge: 9000000000,
+        expires: new Date(Date.now() + 900000),
       })
       .json({ user: checkUser, members: membs })
       .status(200);
