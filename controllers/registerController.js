@@ -64,10 +64,10 @@ export const loginController = async (req, res) => {
 
     return res
       .cookie("chat_basic_cookie", token, {
-        // sameSite: "none",
-        // secure: "true",
+        sameSite: "none",
+        secure: "true",
         httpOnly: true,
-        expires: new Date(Date.now() + 900000),
+        expires: new Date(Date.now() + 9000000),
       })
       .json({ user: checkUser, members: membs })
       .status(200);
