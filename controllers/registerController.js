@@ -64,9 +64,9 @@ export const loginController = async (req, res) => {
 
     return res
       .cookie("chat_basic_cookie", token, {
-        sameSite: "none",
-        secure: "true",
-        // httpOnly: true,
+        // sameSite: "none",
+        // secure: "true",
+        httpOnly: true,
         expires: new Date(Date.now() + 900000),
       })
       .json({ user: checkUser, members: membs })
