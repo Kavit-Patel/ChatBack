@@ -65,7 +65,7 @@ export const loginController = async (req, res) => {
     return res
       .cookie("chat_basic_cookie", token, {
         sameSite: "none",
-        secure: "false",
+        secure: "true",
         // httpOnly: true,
         maxAge: 9000000000,
       })
