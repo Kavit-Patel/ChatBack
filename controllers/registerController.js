@@ -60,14 +60,18 @@ export const loginController = async (req, res) => {
     const matchPassword = checkUser.password == user.password;
     if (!matchPassword)
       return res.status(403).json({ message: "Password doesn't match" });
-    const token = jwt.sign({ id: checkUser._id }, process.env.JSON_SECRATE);
+    const token = jwt.sign({ id: checkUser._id }, process.env.JSON_SECRATE, {
+      expiresIn: "96h",
+    });
 
     return res
       .cookie("chat_basic_cookie", token, {
-        sameSite: "none",
-        secure: "true",
-        httpOnly: true,
+        // sameSite: "none",
+        // secure: "true",
+        // httpOnly: true,
+
         expires: new Date(Date.now() + 9000000),
+        // expiresIn:'48h'
       })
       .json({ user: checkUser, members: membs })
       .status(200);
