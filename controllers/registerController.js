@@ -68,7 +68,7 @@ export const loginController = async (req, res) => {
       .cookie("chat_basic_cookie", token, {
         // sameSite: "none",
         // secure: "true",
-        // httpOnly: true,
+        httpOnly: true,
 
         expires: new Date(Date.now() + 9000000),
         // expiresIn:'48h'
